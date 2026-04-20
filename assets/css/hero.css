@@ -1,0 +1,147 @@
+/* ==========================================================================
+   RR Homes - Hero Slider (Floating Luxury Style)
+   ========================================================================== */
+
+.hero-section {
+    /* Offset for fixed header */
+    padding-top: 130px; 
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    background-color: #fcfcfc; /* Very subtle off-white back to make card pop */
+}
+
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* Luxurious soft shadow */
+}
+
+/* Swiper Base Dimensions - Autofit scaling */
+.heroSwiper {
+    width: 100%;
+    /* Use aspect ratio to allow natural dimensional scaling instead of strict cutoffs */
+    aspect-ratio: 21 / 9;
+    height: auto;
+    max-height: 85vh; /* Safe limit for extremely wide screens */
+}
+
+.swiper-slide {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Background Image perfectly fitted */
+.swiper-slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   PROFESSIONAL NAVIGATION (Lines & Modern Buttons)
+   ========================================================================== */
+/* Sleek Line Pagination */
+.swiper-pagination-bullet {
+    background: #ffffff;
+    opacity: 0.4;
+    width: 35px;
+    height: 3px;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0 5px !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #C8A96A; /* Gold */
+    opacity: 1;
+    width: 60px; /* Expands to show active status prominently */
+    box-shadow: 0 0 10px rgba(200, 169, 106, 0.4);
+}
+
+/* High-end Square Navigation Arrows */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ffffff;
+    background: rgba(30, 26, 34, 0.5); /* Deep translucent charcoal */
+    width: 48px;
+    height: 48px;
+    border-radius: 4px; /* Professional square edge */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: #C8A96A;
+    border-color: #C8A96A;
+    color: #ffffff;
+    transform: scale(1.05); /* Slight pop effect */
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 15px; /* Much sharper, cleaner indicator */
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS (Proportional Scaling)
+   ========================================================================== */
+
+/* Tablets / Small Desktops */
+@media screen and (max-width: 1200px) {
+    .heroSwiper {
+        aspect-ratio: 16 / 9; /* Squarer layout for tablets */
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 768px) {
+    .hero-section {
+        padding-top: 90px;
+        padding-left: 15px; 
+        padding-right: 15px; 
+        padding-bottom: 25px;
+    }
+
+    .hero-wrapper {
+        border-radius: 16px; /* Smoother curve scale for mobile */
+    }
+
+    .heroSwiper {
+        /* This perfectly scales the image height to match its width gracefully */
+        aspect-ratio: 4 / 3; 
+        height: auto;
+        min-height: auto; /* REMOVED rigid clipping! */
+    }
+
+    /* Modern phones still show dots, but keep arrows hidden for swiping */
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+
+    /* Make dots slightly smaller on mobile */
+    .swiper-pagination-bullet {
+        width: 20px;
+        height: 3px;
+    }
+    .swiper-pagination-bullet-active {
+        width: 40px;
+    }
+}

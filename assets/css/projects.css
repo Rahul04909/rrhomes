@@ -1,0 +1,204 @@
+/* ==========================================================================
+   RR Homes - Projects Component
+   ========================================================================== */
+
+:root {
+    --p-dark: #1E1A22; /* Charcoal */
+    --p-gold: #C8A96A; /* Premium Gold */
+    --p-grey: #6b7280;
+    --p-bg: #f8f9fa; /* Very soft off-white to make white cards pop */
+}
+
+.projects-section {
+    padding: 100px 40px;
+    background-color: var(--p-bg);
+    font-family: 'Poppins', sans-serif;
+}
+
+.projects-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Heading Setup */
+.section-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-heading h2 {
+    font-size: 46px;
+    font-family: 'Playfair Display', serif;
+    color: var(--p-dark);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    font-size: 16px;
+    color: var(--p-grey);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 40px;
+}
+
+/* Initializing the Card */
+.project-card {
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06); /* Soft subtle perimeter shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Image Top Section */
+.card-img {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    /* Removed padding/border per requested image geometry */
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .card-img img {
+    transform: scale(1.08); /* Soft zoom effect inside frame */
+}
+
+/* Bottom Content Padding */
+.card-content {
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ensures buttons align at bottom if text differs */
+}
+
+.card-content h3 {
+    font-size: 26px;
+    color: var(--p-dark);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.card-content p {
+    color: var(--p-grey);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    flex-grow: 1; /* Pushes button to bottom boundary dynamically */
+}
+
+/* ==========================================================================
+   THE 3D SKEWED OFFSET BUTTON (Like the sample)
+   ========================================================================== */
+.card-action {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* The wrapper creates the baseline structure */
+.skew-btn {
+    position: relative;
+    display: inline-flex;
+    padding: 12px 30px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin-left: 6px; /* Space on left so the offset background doesn't clip */
+    z-index: 5; /* Sit on top */
+}
+
+/* The Dark Charcoal layer (The top button block) */
+.skew-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: var(--p-dark);
+    transform: skewX(-12deg); /* The angled slant */
+    border-radius: 2px;
+    z-index: -1;
+    transition: background-color 0.3s ease;
+}
+
+/* The Gold Offset Shadow layer (The bottom block) */
+/* In the sample, it is green. We use gold for luxury sync. */
+.skew-btn::after {
+    content: '';
+    position: absolute;
+    top: 6px; /* Offset down */
+    left: -6px; /* Offset left */
+    width: 100%; 
+    height: 100%;
+    background-color: var(--p-gold);
+    transform: skewX(-12deg); /* Match the slant exactly */
+    border-radius: 2px;
+    z-index: -2; /* Force behind the dark block */
+    transition: all 0.3s ease;
+}
+
+/* Hover Interaction: Reverse the colors playfully! */
+.skew-btn:hover::before {
+    background-color: var(--p-gold);
+}
+
+.skew-btn:hover::after {
+    background-color: var(--p-dark);
+    top: 4px; /* Compress the 3D effect slightly to 'click' down */
+    left: -4px;
+}
+
+/* ==========================================================================
+   RESPONSIVE LOGIC
+   ========================================================================== */
+@media screen and (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .projects-section {
+        padding: 60px 20px;
+    }
+    .section-heading h2 {
+        font-size: 34px;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column stack */
+    }
+    .card-img {
+        height: 220px;
+    }
+    .card-content h3 {
+        font-size: 22px;
+    }
+    .card-content p {
+        font-size: 15px;
+    }
+}

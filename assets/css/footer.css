@@ -1,0 +1,346 @@
+/* ==========================================================================
+   RR Homes - Ultra Premium Interactive Footer
+   ========================================================================== */
+
+/* Variables (matching header structure) */
+:root {
+    --f-primary-gold: #C8A96A;
+    --f-gold-hover: #b49658;
+    --f-charcoal-dark: #1E1A22; /* Core dark background */
+    --f-text-light: #ffffff;
+    --f-text-muted: #d0d0d0;
+    --f-border-subtle: rgba(200, 169, 106, 0.15); /* Gold tinted border */
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-primary: 'Poppins', sans-serif;
+    
+    --f-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer {
+    background-color: var(--f-charcoal-dark);
+    /* Subtle gradient overlay for luxury texture */
+    background-image: linear-gradient(135deg, rgba(30,26,34,1) 0%, rgba(20,17,23,1) 100%);
+    color: var(--f-text-light);
+    font-family: var(--font-primary);
+    position: relative;
+    padding-top: 90px;
+    margin-top: 80px; /* Space from the page content */
+    border-top: 3px solid var(--f-primary-gold); /* Prominent gold top lip */
+}
+
+.footer-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-grid {
+    display: grid;
+    /* Map gets more space on the right (1.8fr) */
+    grid-template-columns: 1.2fr 1fr 1.2fr 1.8fr;
+    gap: 40px;
+    padding-bottom: 70px;
+}
+
+/* ==========================================================================
+   COL 1: BRANDING
+   ========================================================================== */
+
+.footer-logo {
+    width: 180px;
+    margin-bottom: 25px;
+    display: block;
+    /* Optional: filter to make logo bright on dark background if it's currently dark */
+    /* filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.1)); */
+}
+
+.tagline {
+    font-family: var(--font-heading);
+    color: var(--f-primary-gold);
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+
+.desc {
+    color: var(--f-text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 320px;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   COL 2, 3, 4: SHARED TITLES
+   ========================================================================== */
+
+.col-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--f-text-light);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.col-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 35px;
+    height: 2px;
+    background: var(--f-primary-gold);
+    transition: width 0.4s ease;
+}
+
+.footer-col:hover .col-title::after {
+    width: 100%; /* Interactive underline expansion strictly on hover block */
+}
+
+/* ==========================================================================
+   LINKS & CONTACT LIST
+   ========================================================================== */
+
+.footer-links, .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li, .contact-list li {
+    margin-bottom: 18px;
+}
+
+.footer-links a, .contact-list li {
+    color: var(--f-text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 300;
+    transition: var(--f-transition);
+}
+
+/* Hover effect on quick links */
+.footer-links a {
+    position: relative;
+}
+
+.footer-links a:hover {
+    color: var(--f-primary-gold);
+    padding-left: 8px; /* Smooth physical nudge */
+}
+
+/* Contact List specific */
+.contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    line-height: 1.5;
+}
+
+.contact-list i {
+    color: var(--f-primary-gold);
+    font-size: 16px;
+    margin-top: 4px; /* Align icon slightly down with multiline text */
+}
+
+/* ==========================================================================
+   SOCIAL ICONS
+   ========================================================================== */
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--f-border-subtle);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--f-text-light);
+    background: rgba(255, 255, 255, 0.02);
+    text-decoration: none;
+    font-size: 16px;
+    transition: var(--f-transition);
+}
+
+.social-icon:hover {
+    background: var(--f-primary-gold);
+    border-color: var(--f-primary-gold);
+    color: #ffffff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(200, 169, 106, 0.3);
+}
+
+/* Map Interactive Wrapper */
+.footer-map-wrapper {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.footer-map-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(200, 169, 106, 0.2) !important;
+}
+
+/* ==========================================================================
+   BOTTOM STRIP
+   ========================================================================== */
+
+.footer-bottom {
+    border-top: 1px solid var(--f-border-subtle);
+    background: rgba(0, 0, 0, 0.15); /* Slightly darker */
+}
+
+.footer-bottom-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 25px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #999999;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* ==========================================================================
+   BACK TO TOP BUTTON
+   ========================================================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--f-primary-gold);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0 4px 20px rgba(200, 169, 106, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--f-transition);
+    transform: translateY(20px);
+    z-index: 1000;
+    border: 2px solid transparent;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--f-charcoal-dark);
+    color: var(--f-primary-gold);
+    border-color: var(--f-primary-gold);
+    transform: translateY(-5px) scale(1.05); /* Float effect */
+}
+
+
+/* ==========================================================================
+   RESPONSIVENESS (Mobile Scaling)
+   ========================================================================== */
+
+/* Tablet (Landscape & small desktop) */
+@media screen and (max-width: 1100px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px 40px;
+    }
+    
+    .footer-bottom-container {
+        padding: 20px 40px;
+    }
+}
+
+/* Tablet (Portrait) & Mobile */
+@media screen and (max-width: 768px) {
+    .footer {
+        padding-top: 60px;
+        margin-top: 50px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+        padding-bottom: 50px;
+    }
+
+    .footer-logo {
+        margin: 0 auto 20px auto;
+    }
+
+    .desc {
+        margin: 0 auto;
+    }
+
+    /* Center alignment for titles and borders */
+    .col-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-links a:hover {
+        padding-left: 0;
+        color: var(--f-primary-gold);
+    }
+    
+    .contact-list li {
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* Change icon margin for vertical alignment */
+    .contact-list i {
+        margin-top: 0;
+        margin-bottom: 4px;
+        font-size: 20px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 25px 20px;
+    }
+
+    /* Move Back-to-Top slightly for mobile so it doesn't block crucial edges */
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+}
