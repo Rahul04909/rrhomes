@@ -117,11 +117,6 @@
         </div>
     </section>
 
-    <!-- Full Width Map Section -->
-    <div style="width: 100%; height: 500px; display: block;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x390d235e1281db2b%3A0xe5a36aa1a4c952!2sSector%2016%2C%20Faridabad%2C%20Haryana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-
     <?php include 'includes/footer.php'; ?>
 </body>
 </html>

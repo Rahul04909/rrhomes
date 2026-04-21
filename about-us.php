@@ -28,17 +28,14 @@
         
         .about-content p { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 25px; }
         
-        .vision-mission-section { padding: 90px 5%; background: whitesmoke; }
-        .vm-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 50px; }
-        .vm-card { background: #fff; padding: 50px 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); text-align: center; border-bottom: 6px solid #d4af37; transition: transform 0.4s ease, box-shadow 0.4s ease;}
-        .vm-card:hover { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
-        .vm-icon { font-size: 3.5rem; color: #d4af37; margin-bottom: 25px; }
-        .vm-card h3 { font-size: 1.8rem; margin-bottom: 25px; text-transform: uppercase; font-weight: 800; color: #222; }
-        .vm-card p { font-size: 1.05rem; line-height: 1.7; color: #666; margin-bottom: 15px; }
+        .vision-mission-section { padding: 80px 5%; background: whitesmoke; }
+        .vm-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 50px; }
+        .vm-content h3 { font-size: 2.2rem; color: #111; margin-bottom: 25px; position: relative; padding-bottom: 15px; font-weight: 800; text-transform: uppercase;}
+        .vm-content h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 80px; height: 4px; background: #d4af37; }
+        .vm-content p { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px; }
 
         @media(max-width: 768px) {
             .page-hero h1 { font-size: 2.8rem;}
-            .vm-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -68,15 +65,13 @@
 
     <section class="vision-mission-section">
         <div class="vm-container">
-            <div class="vm-card">
-                <div class="vm-icon"><i class="fas fa-eye"></i></div>
+            <div class="vm-content">
                 <h3>Our Vision</h3>
                 <p>To be a premier real estate group by paving a pathway for the finest level of quality construction and contribute to creating modern real estate solutions on the foundation of commitment, trust, and integrity.</p>
                 <p>To always be the preferred choice of our customers and to be recognized as one of the most trustable real estate brands.</p>
                 <p>We strive to provide affordability, timely delivery, and transparent communication to our customers.</p>
             </div>
-            <div class="vm-card">
-                <div class="vm-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="vm-content">
                 <h3>Our Mission</h3>
                 <p>RR Homes is working on a mission of creating an atmosphere of trust and integrity within the real estate industry. We aim to exceed the limit of client satisfaction and deliver projects within the time frame while upholding the utmost degree of professionalism and ethics.</p>
                 <p>To be consistent and always work towards innovation and sustainable development.</p>
