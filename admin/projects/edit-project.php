@@ -132,13 +132,13 @@ if (!$project) {
                 <div class="card-body">
                     <ul class="nav nav-tabs mb-4" id="projectTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="basic-tab" data-toggle="tab" href="#basic" role="tab">Basic Info</a>
+                            <a class="nav-link active" id="basic-tab" data-toggle="tab" data-bs-toggle="tab" href="#basic" role="tab">Basic Info</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="media-tab" data-toggle="tab" href="#media" role="tab">Media & Slides</a>
+                            <a class="nav-link" id="media-tab" data-toggle="tab" data-bs-toggle="tab" href="#media" role="tab">Media & Slides</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab">SEO Aspects</a>
+                            <a class="nav-link" id="seo-tab" data-toggle="tab" data-bs-toggle="tab" href="#seo" role="tab">SEO Aspects</a>
                         </li>
                     </ul>
 
