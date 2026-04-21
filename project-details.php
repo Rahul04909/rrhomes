@@ -44,41 +44,51 @@ $seo_featured = htmlspecialchars($project['seo_featured_image']);
     <!-- Include Swiper for slider -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
+        body { background-color: #f9f9f9; font-family: 'Inter', sans-serif; }
         .project-hero { position: relative; height: 75vh; background: #000; overflow: hidden; margin-top: 80px; }
         .project-hero .swiper { width: 100%; height: 100%; }
         .project-hero .swiper-slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; z-index: 10; padding: 20px; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9)); }
-        .hero-overlay h1 { font-size: 4rem; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; z-index: 10; padding: 20px; background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9)); }
+        .hero-overlay h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
         .hero-overlay h1 span { color: #d4af37; }
-        .hero-overlay p { font-size: 1.25rem; max-width: 800px; line-height: 1.6; }
+        .hero-overlay p { font-size: 1.25rem; max-width: 800px; line-height: 1.6; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         
-        .details-container { padding: 80px 5%; display: flex; flex-wrap: wrap; gap: 50px; background: whitesmoke; }
-        .details-content { flex: 1 1 60%; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .details-sidebar { flex: 1 1 30%; background: #1a1a1a; color: #fff; padding: 40px; border-radius: 10px; border-top: 5px solid #d4af37; box-shadow: 0 10px 30px rgba(0,0,0,0.15); align-self: flex-start; position: sticky; top: 120px;}
+        .main-wrapper { background: whitesmoke; }
+        .details-container { padding: 60px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
         
-        .section-title { font-size: 2rem; color: #222; margin-bottom: 30px; border-bottom: 2px solid #d4af37; display: inline-block; padding-bottom: 10px; text-transform: uppercase;}
-        .content-box { margin-bottom: 50px; font-size: 1.1rem; line-height: 1.8; color: #555; }
+        .details-content { background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .details-sidebar { background: #ffffff; color: #333; padding: 35px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border-top: 6px solid #d4af37; align-self: flex-start; position: sticky; top: 110px;}
+        
+        .sidebar-header { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .sidebar-header h3 { font-size: 1.6rem; text-transform: uppercase; margin: 0; color: #222; font-weight: bold;}
+        .sidebar-header p { color: #777; margin-top: 10px; font-size: 0.95rem; }
+        
+        .section-title { font-size: 1.8rem; color: #111; margin-bottom: 25px; position: relative; padding-bottom: 10px; font-weight: 700; text-transform: uppercase;}
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px; background: #d4af37; }
+        
+        .content-box { margin-bottom: 50px; font-size: 1.05rem; line-height: 1.8; color: #555; }
         .content-box img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
         
-        .enquiry-form input, .enquiry-form textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #444; background: #2a2a2a; color: #fff; border-radius: 5px; font-family: inherit; font-size: 1rem; transition: border 0.3s;}
-        .enquiry-form input::placeholder, .enquiry-form textarea::placeholder { color: #aaa; }
-        .enquiry-form input:focus, .enquiry-form textarea:focus { border-color: #d4af37; outline: none; box-shadow: 0 0 5px rgba(212,175,55,0.3); }
+        .form-group-custom { margin-bottom: 20px; }
+        .form-group-custom label { display: block; font-weight: 600; margin-bottom: 8px; color: #444; font-size: 0.9rem;}
+        .enquiry-form input, .enquiry-form textarea { width: 100%; padding: 14px 18px; border: 1px solid #ddd; background: #fdfdfd; color: #333; border-radius: 6px; font-family: inherit; font-size: 1rem; transition: all 0.3s;}
+        .enquiry-form input:focus, .enquiry-form textarea:focus { border-color: #d4af37; outline: none; box-shadow: 0 0 0 4px rgba(212,175,55,0.1); background: #fff;}
         
-        .skew-btn-gold { display: inline-block; background-color: #d4af37; color: #fff; text-decoration: none; padding: 15px 30px; font-weight: 600; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px; border: none; cursor: pointer; transition: all 0.3s ease; position: relative; z-index: 1; border-radius: 4px; border: 2px solid #d4af37; width: 100%; text-align: center;}
-        .skew-btn-gold:hover { background-color: #fff; border-color: #fff; color: #1a1a1a; }
+        .skew-btn-gold { display: inline-block; background-color: #d4af37; color: #fff; text-decoration: none; padding: 16px 30px; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1.5px; border: none; cursor: pointer; transition: all 0.3s ease; border-radius: 6px; width: 100%; text-align: center; box-shadow: 0 4px 15px rgba(212,175,55,0.3);}
+        .skew-btn-gold:hover { background-color: #222; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34,34,34,0.3); color: #d4af37; }
         
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;}
-        .gallery-grid img:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
+        .gallery-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer;}
+        .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.15); z-index: 1;}
         
         /* Modal for Image Preview */
-        .modal { display: none; position: fixed; z-index: 9999; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
-        .modal-content { margin: auto; display: block; max-width: 80%; max-height: 80vh; object-fit: contain; }
-        .close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
-        .close:hover, .close:focus { color: #d4af37; text-decoration: none; cursor: pointer; }
+        .modal { display: none; position: fixed; z-index: 9999; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px);}
+        .modal-content { margin: auto; display: block; max-width: 80%; max-height: 80vh; object-fit: contain; box-shadow: 0 0 30px rgba(0,0,0,0.5); border-radius: 4px;}
+        .close { position: absolute; top: 15px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; text-shadow: 0 0 10px rgba(0,0,0,0.5);}
+        .close:hover, .close:focus { color: #d4af37; text-decoration: none; cursor: pointer; transform: scale(1.1);}
 
-        @media(max-width: 768px) {
-            .details-container { flex-direction: column; }
+        @media(max-width: 991px) {
+            .details-container { grid-template-columns: 1fr; }
             .hero-overlay h1 { font-size: 2.5rem; }
         }
     </style>
@@ -105,54 +115,70 @@ $seo_featured = htmlspecialchars($project['seo_featured_image']);
         </div>
     </section>
 
-    <div class="details-container">
-        <div class="details-content">
-            <div class="content-box">
-                <h2 class="section-title">Project Overview</h2>
-                <div>
-                    <?= empty(trim(strip_tags($description))) ? '<p>Details coming soon.</p>' : $description ?>
+    <div class="main-wrapper">
+        <div class="details-container">
+            <div class="details-content">
+                <div class="content-box">
+                    <h2 class="section-title">Project Overview</h2>
+                    <div>
+                        <?= empty(trim(strip_tags($description))) ? '<p>Details coming soon.</p>' : $description ?>
+                    </div>
                 </div>
-            </div>
 
-            <?php if(!empty(trim(strip_tags($specifications)))): ?>
-            <div class="content-box">
-                <h2 class="section-title">Specifications</h2>
-                <div><?= $specifications ?></div>
-            </div>
-            <?php endif; ?>
-
-            <?php if(!empty($images)): ?>
-            <div class="content-box">
-                <h2 class="section-title">Photo Gallery</h2>
-                <div class="gallery-grid">
-                    <?php foreach($images as $img): ?>
-                        <img src="assets/uploads/projects/<?= htmlspecialchars($img) ?>" alt="Gallery Image" class="gallery-item" onclick="openModal(this)">
-                    <?php endforeach; ?>
+                <?php if(!empty(trim(strip_tags($specifications)))): ?>
+                <div class="content-box">
+                    <h2 class="section-title">Specifications</h2>
+                    <div><?= $specifications ?></div>
                 </div>
+                <?php endif; ?>
+
+                <?php if(!empty($images)): ?>
+                <div class="content-box">
+                    <h2 class="section-title">Photo Gallery</h2>
+                    <div class="gallery-grid">
+                        <?php foreach($images as $img): ?>
+                            <img src="assets/uploads/projects/<?= htmlspecialchars($img) ?>" alt="Gallery Image" class="gallery-item" onclick="openModal(this)">
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
-        </div>
 
-        <div class="details-sidebar">
-            <h3 style="margin-bottom:20px; font-size:1.5rem; text-transform:uppercase;">Interested in <br><span style="color:#d4af37;"><?= $title ?></span>?</h3>
-            <p style="margin-bottom:30px; color:#bbb;">Fill out the form below and our real estate experts will get back to you shortly.</p>
-            
-            <?php
-            $enq_msg = '';
-            if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_enquiry'])) {
-                // Here is where the actual DB insert or Mail logic goes
-                $enq_msg = "<div style='color:#28a745; background:rgba(40,167,69,0.1); padding:15px; border-radius:5px; margin-bottom:20px; font-weight:bold; border-left:4px solid #28a745;'>Thank you! Your enquiry has been completely received. Our team will contact you.</div>";
-            }
-            ?>
-            <?= $enq_msg ?>
+            <div class="details-sidebar">
+                <div class="sidebar-header">
+                    <h3>Interested in <br><span style="color:#d4af37;"><?= $title ?></span>?</h3>
+                    <p>Fill out the form below and our real estate experts will get back to you shortly.</p>
+                </div>
+                
+                <?php
+                $enq_msg = '';
+                if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_enquiry'])) {
+                    // Here is where the actual DB insert or Mail logic goes
+                    $enq_msg = "<div style='color:#28a745; background:rgba(40,167,69,0.1); padding:15px; border-radius:5px; margin-bottom:20px; font-weight:bold; border-left:4px solid #28a745;'>Thank you! Your enquiry has been completely received. Our team will contact you.</div>";
+                }
+                ?>
+                <?= $enq_msg ?>
 
-            <form class="enquiry-form" method="POST">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <input type="text" name="phone" placeholder="Phone Number" required>
-                <textarea name="message" rows="4" placeholder="Your Message" required>I am interested in the <?= $title ?> project and would like to know more details.</textarea>
-                <button type="submit" name="submit_enquiry" class="skew-btn-gold">SUBMIT ENQUIRY</button>
-            </form>
+                <form class="enquiry-form" method="POST">
+                    <div class="form-group-custom">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label>Phone Number</label>
+                        <input type="text" name="phone" placeholder="Enter your phone" required>
+                    </div>
+                    <div class="form-group-custom">
+                        <label>Your Message</label>
+                        <textarea name="message" rows="4" placeholder="How can we help you?" required>I am interested in the <?= $title ?> project and would like to know more details.</textarea>
+                    </div>
+                    <button type="submit" name="submit_enquiry" class="skew-btn-gold">SUBMIT ENQUIRY</button>
+                </form>
+            </div>
         </div>
     </div>
 
