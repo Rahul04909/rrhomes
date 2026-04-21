@@ -1,5 +1,7 @@
 <!-- includes/header.php -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="assets/css/header.css">
 
@@ -23,20 +25,20 @@
 
 <header id="main-header" class="header">
     <div class="header-container">
-        
+
         <!-- Navigation Menu -->
         <nav class="main-nav" id="main-nav">
             <div class="nav-left-items">
                 <a href="index.php" class="active">HOME</a>
-                <a href="#">ABOUT US</a>
+                <a href="../../about-us.php">ABOUT US</a>
                 <a href="#">PROJECTS</a>
             </div>
-            
+
             <div class="nav-gap"></div>
-            
+
             <div class="nav-right-items">
                 <a href="#">SPECIFICATIONS</a>
-                <a href="#">CONTACT US</a>
+                <a href="../../contact-us.php">CONTACT US</a>
             </div>
         </nav>
 
@@ -78,7 +80,8 @@
         <li><a href="#">CONTACT US</a></li>
     </ul>
     <div class="mobile-actions">
-        <a href="tel:+919876543210" class="btn btn-outline mobile-btn"><i class="fa-solid fa-phone"></i> +91 98765 43210</a>
+        <a href="tel:+919876543210" class="btn btn-outline mobile-btn"><i class="fa-solid fa-phone"></i> +91 98765
+            43210</a>
         <a href="#" class="btn btn-primary mobile-btn">Enquire Now</a>
     </div>
 </div>
@@ -88,7 +91,7 @@
     document.addEventListener("DOMContentLoaded", () => {
         const header = document.getElementById("main-header");
         const topBar = document.getElementById("top-bar");
-        
+
         window.addEventListener("scroll", () => {
             if (window.scrollY > 40) {
                 header.classList.add("scrolled");
