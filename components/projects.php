@@ -1,3 +1,9 @@
+<?php
+require_once __DIR__ . '/../database/config.php';
+$stmt = $conn->prepare("SELECT id, title, short_description, seo_featured_image FROM projects ORDER BY id DESC LIMIT 6");
+$stmt->execute();
+$projects = $stmt->get_result();
+?>
 <!-- components/projects.php -->
 <link rel="stylesheet" href="assets/css/projects.css">
 
@@ -12,52 +18,31 @@
 
         <!-- Projects Grid -->
         <div class="projects-grid">
-            
-            <!-- Project Card 1 -->
-            <div class="project-card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Premium Builder Floors">
-                </div>
-                <div class="card-content">
-                    <h3>Premium Builder Floors</h3>
-                    <p>Experience unmatched elegance with our spacious builder floors in the heart of Faridabad, equipped with ultra-modern amenities and stunning architecture.</p>
-                    
-                    <div class="card-action">
-                        <a href="#" class="skew-btn">READ MORE</a>
+            <?php if ($projects->num_rows > 0): ?>
+                <?php while ($row = $projects->fetch_assoc()): ?>
+                <div class="project-card">
+                    <div class="card-img" style="height: 250px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #f0f0f0;">
+                        <?php if(!empty($row['seo_featured_image'])): ?>
+                            <img src="assets/uploads/projects/<?= htmlspecialchars($row['seo_featured_image']) ?>" alt="<?= htmlspecialchars($row['title']) ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                        <?php else: ?>
+                            <img src="assets/rr-home-logo.png" alt="RR Homes" style="max-height: 80px; opacity: 0.3;">
+                        <?php endif; ?>
+                    </div>
+                    <div class="card-content">
+                        <h3><?= htmlspecialchars($row['title']) ?></h3>
+                        <p><?= htmlspecialchars(mb_strimwidth($row['short_description'], 0, 150, '...')) ?></p>
+                        
+                        <div class="card-action">
+                            <a href="project-details.php?id=<?= $row['id'] ?>" class="skew-btn">READ MORE</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Project Card 2 -->
-            <div class="project-card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1600607687930-cebc5a882e30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Luxury Apartments">
+                <?php endwhile; ?>
+            <?php else: ?>
+                <div style="grid-column: 1 / -1; text-align: center; color: #666; font-size: 1.2rem; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                    No projects available right now. Check back later!
                 </div>
-                <div class="card-content">
-                    <h3>Luxury Apartments</h3>
-                    <p>Step into a world of comfort with fully-furnished, elite apartments. Perfect for families looking for serene environments and premium connectivity.</p>
-                    
-                    <div class="card-action">
-                        <a href="#" class="skew-btn">READ MORE</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Card 3 -->
-            <div class="project-card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1600566753086-00f18efc2291?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Commercial Spaces">
-                </div>
-                <div class="card-content">
-                    <h3>Commercial Spaces</h3>
-                    <p>Expand your business with our strategically located commercial complexes. Offering high footfall, modern infrastructure, and robust security.</p>
-                    
-                    <div class="card-action">
-                        <a href="#" class="skew-btn">READ MORE</a>
-                    </div>
-                </div>
-            </div>
-
+            <?php endif; ?>
         </div>
     </div>
 </section>

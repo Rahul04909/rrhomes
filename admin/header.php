@@ -4,7 +4,7 @@ if (!isset($_SESSION['admin_id'])) {
     header('Location: login.php');
     exit;
 }
-require_once '../database/config.php';
+require_once __DIR__ . '/../database/config.php';
 
 $stmt = $conn->prepare("SELECT name, profile_image FROM admins WHERE id = ?");
 $stmt->bind_param("i", $_SESSION['admin_id']);
