@@ -13,6 +13,10 @@ $admin_data = $stmt->get_result()->fetch_assoc();
 $logged_in_name = $admin_data['name'] ?? 'Admin';
 $logged_in_image = $admin_data['profile_image'] ?? 'user-avtar.png';
 
+$in_subfolder = (basename(dirname($_SERVER['PHP_SELF'])) === 'projects');
+$base_url = $in_subfolder ? '../' : './';
+$asset_url = $in_subfolder ? '../../assets/' : '../assets/';
+
 $currentPage = basename($_SERVER['SCRIPT_NAME']);
 
 $menuItems = [
@@ -20,14 +24,22 @@ $menuItems = [
         "menuTitle" => "Dashboard",
         "icon" => "fas fa-home",
         "pages" => [
-            ["title" => "Home", "url" => "index.php"]
+            ["title" => "Home", "url" => $base_url . "index.php"]
+        ],
+    ],
+    [
+        "menuTitle" => "Projects",
+        "icon" => "fas fa-building",
+        "pages" => [
+            ["title" => "All Projects", "url" => $base_url . "projects/index.php"],
+            ["title" => "Add Project", "url" => $base_url . "projects/add-project.php"]
         ],
     ],
     [
         "menuTitle" => "Settings",
         "icon" => "fas fa-cog",
         "pages" => [
-            ["title" => "Profile", "url" => "profile.php"]
+            ["title" => "Profile", "url" => $base_url . "profile.php"]
         ],
     ]
 ];
@@ -35,7 +47,9 @@ $menuItems = [
 $active_pageInfo = null;
 foreach ($menuItems as $menuItem) {
     foreach ($menuItem['pages'] as $page) {
-        if ($currentPage === $page['url']) {
+        $cleanPageUrl = preg_replace('#^(\.\./|\./)#', '', $page['url']);
+        $script_path = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+        if (substr($script_path, -strlen($cleanPageUrl)) === $cleanPageUrl) {
             $active_pageInfo = [
                 "breadcrumb_Items" => [
                     ["title" => $menuItem['menuTitle'], "url" => "#"],
@@ -439,14 +453,14 @@ $active_page = $active_pageInfo['active_page'] ?? null;
         </div>
 
         <aside class="main-sidebar sidebar-light-primary elevation-4">
-            <a href="./" class="brand-link" style="background-color: #ffffff !important; border-bottom: 1px solid #f0f0f1 !important;">
-                <img src="../assets/rr-home-logo.png" alt="Logo" class="brand-image">
+            <a href="<?= $base_url ?>index.php" class="brand-link" style="background-color: #ffffff !important; border-bottom: 1px solid #f0f0f1 !important;">
+                <img src="<?= $asset_url ?>rr-home-logo.png" alt="Logo" class="brand-image">
             </a>
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3">
-                    <a href="./profile.php" class="d-flex">
+                    <a href="<?= $base_url ?>profile.php" class="d-flex">
                         <div class="image">
-                            <img src="./src/images/<?= htmlspecialchars($logged_in_image) ?>" class="img-circle elevation-2 bg-white" alt="User Image">
+                            <img src="<?= $base_url ?>src/images/<?= htmlspecialchars($logged_in_image) ?>" class="img-circle elevation-2 bg-white" alt="User Image">
                         </div>
                         <div class="info">
                             <?= htmlspecialchars($logged_in_name) ?>
@@ -480,7 +494,7 @@ $active_page = $active_pageInfo['active_page'] ?? null;
                             </li>
                         <?php endforeach; ?>
                         <li class="nav-item">
-                            <a href="logout.php" class="nav-link">
+                            <a href="<?= $base_url ?>logout.php" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Logout</p>
                             </a>
