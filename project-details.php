@@ -57,11 +57,16 @@ $seo_featured = htmlspecialchars($project['seo_featured_image']);
         .details-container { padding: 60px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
         
         .details-content { background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-        .details-sidebar { background: #ffffff; color: #333; padding: 35px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border-top: 6px solid #d4af37; align-self: flex-start; position: sticky; top: 110px;}
+        .details-sidebar { background: #ffffff; color: #333; padding: 30px; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.08); border-top: 6px solid #d4af37; align-self: flex-start; position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto;}
         
-        .sidebar-header { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .sidebar-header h3 { font-size: 1.6rem; text-transform: uppercase; margin: 0; color: #222; font-weight: bold;}
-        .sidebar-header p { color: #777; margin-top: 10px; font-size: 0.95rem; }
+        /* Custom sidebar scrollbar to keep it clean */
+        .details-sidebar::-webkit-scrollbar { width: 4px; }
+        .details-sidebar::-webkit-scrollbar-track { background: #fbfbfb; }
+        .details-sidebar::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+
+        .sidebar-header { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .sidebar-header h3 { font-size: 1.4rem; text-transform: uppercase; margin: 0; color: #222; font-weight: 800; line-height: 1.3;}
+        .sidebar-header p { color: #666; margin-top: 8px; font-size: 0.9rem; line-height: 1.5; }
         
         .section-title { font-size: 1.8rem; color: #111; margin-bottom: 25px; position: relative; padding-bottom: 10px; font-weight: 700; text-transform: uppercase;}
         .section-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 3px; background: #d4af37; }
@@ -69,13 +74,14 @@ $seo_featured = htmlspecialchars($project['seo_featured_image']);
         .content-box { margin-bottom: 50px; font-size: 1.05rem; line-height: 1.8; color: #555; }
         .content-box img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
         
-        .form-group-custom { margin-bottom: 20px; }
-        .form-group-custom label { display: block; font-weight: 600; margin-bottom: 8px; color: #444; font-size: 0.9rem;}
-        .enquiry-form input, .enquiry-form textarea { width: 100%; padding: 14px 18px; border: 1px solid #ddd; background: #fdfdfd; color: #333; border-radius: 6px; font-family: inherit; font-size: 1rem; transition: all 0.3s;}
-        .enquiry-form input:focus, .enquiry-form textarea:focus { border-color: #d4af37; outline: none; box-shadow: 0 0 0 4px rgba(212,175,55,0.1); background: #fff;}
-        
-        .skew-btn-gold { display: inline-block; background-color: #d4af37; color: #fff; text-decoration: none; padding: 16px 30px; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1.5px; border: none; cursor: pointer; transition: all 0.3s ease; border-radius: 6px; width: 100%; text-align: center; box-shadow: 0 4px 15px rgba(212,175,55,0.3);}
-        .skew-btn-gold:hover { background-color: #222; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34,34,34,0.3); color: #d4af37; }
+        .form-group-custom { margin-bottom: 15px; }
+        .form-group-custom label { display: block; font-weight: 600; margin-bottom: 5px; color: #444; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;}
+        .enquiry-form input, .enquiry-form textarea { width: 100%; box-sizing: border-box; padding: 12px 15px; border: 1px solid #ddd; background: #fdfdfd; color: #333; border-radius: 5px; font-family: inherit; font-size: 0.95rem; transition: all 0.3s;}
+        .enquiry-form input:focus, .enquiry-form textarea:focus { border-color: #d4af37; outline: none; box-shadow: 0 0 0 3px rgba(212,175,55,0.15); background: #fff;}
+        .enquiry-form textarea { resize: vertical; min-height: 80px; }
+
+        .skew-btn-gold { display: inline-block; background-color: #d4af37; color: #fff; text-decoration: none; padding: 14px 25px; font-weight: 700; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px; border: none; cursor: pointer; transition: all 0.3s ease; border-radius: 5px; width: 100%; text-align: center; box-shadow: 0 4px 15px rgba(212,175,55,0.3); margin-top: 5px;}
+        .skew-btn-gold:hover { background-color: #222; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34,34,34,0.2); color: #d4af37; }
         
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
         .gallery-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer;}
@@ -89,7 +95,9 @@ $seo_featured = htmlspecialchars($project['seo_featured_image']);
 
         @media(max-width: 991px) {
             .details-container { grid-template-columns: 1fr; }
+            .details-sidebar { position: static; max-height: none; overflow-y: visible; margin-top: 20px;}
             .hero-overlay h1 { font-size: 2.5rem; }
+            .details-content { padding: 25px; }
         }
     </style>
 </head>
