@@ -28,7 +28,7 @@
         
         .about-content p { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 25px; }
         
-        .vision-mission-section { padding: 80px 5%; background: whitesmoke; }
+        .vision-mission-section { padding: 80px 5%; background: #ffffff; }
         .vm-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 50px; }
         .vm-content h3 { font-size: 2.2rem; color: #111; margin-bottom: 25px; position: relative; padding-bottom: 15px; font-weight: 800; text-transform: uppercase;}
         .vm-content h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 80px; height: 4px; background: #d4af37; }
