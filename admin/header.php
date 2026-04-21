@@ -372,6 +372,39 @@ $active_page = $active_pageInfo['active_page'] ?? null;
                 justify-content: flex-start !important;
             }
         }
+
+        @keyframes glowingBlink {
+            0% {
+                background-color: #28a745;
+                box-shadow: 0 0 10px #28a745;
+            }
+            50% {
+                background-color: #ffc107;
+                box-shadow: 0 0 20px #ffc107;
+            }
+            100% {
+                background-color: #28a745;
+                box-shadow: 0 0 10px #28a745;
+            }
+        }
+        
+        .blinking-wrapper {
+            animation: glowingBlink 2s infinite alternate;
+            color: #ffffff;
+            padding: 8px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .blinking-wrapper:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
@@ -380,40 +413,10 @@ $active_page = $active_pageInfo['active_page'] ?? null;
     <div class="wrapper">
         <!-- Wrapper started -->
 
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <div class="nav-link">
-                        <i class="fas fa-th-large"></i>
-                    </div>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="./" class="nav-link">Home</a>
-                </li>
-            </ul>
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" name="search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#messages">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">2</span>
-                    </a>
-                </li>
-                <li class="nav-item dropdown"><a class="nav-link" href="#notifications">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">5</span>
-                    </a>
-                </li>
-            </ul>
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light d-flex justify-content-center align-items-center" style="min-height: 60px;">
+            <div class="blinking-wrapper" title="Interactive Dashboard Welcome">
+                Welcome to RRHomes Admin Dashboard
+            </div>
         </nav>
 
         <div class="main-header" style="padding: 0px 10px; background-color: #f4f6f9; border-bottom: none !important;">
@@ -436,8 +439,8 @@ $active_page = $active_pageInfo['active_page'] ?? null;
         </div>
 
         <aside class="main-sidebar sidebar-light-primary elevation-4">
-            <a href="./" class="brand-link">
-                <img src="./src/images/prayag-computer-logo.png" alt="Logo" class="brand-image img-circle bg-white">
+            <a href="./" class="brand-link" style="background-color: #ffffff !important; border-bottom: 1px solid #f0f0f1 !important;">
+                <img src="../assets/rr-home-logo.png" alt="Logo" class="brand-image">
             </a>
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3">
