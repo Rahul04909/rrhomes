@@ -494,6 +494,12 @@ $active_page = $active_pageInfo['active_page'] ?? null;
                             </li>
                         <?php endforeach; ?>
                         <li class="nav-item">
+                            <a href="<?= $base_url ?>/enquiries/index.php" class="nav-link <?= strpos($_SERVER['PHP_SELF'], 'enquiries') !== false ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>Enquiries</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= $base_url ?>logout.php" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Logout</p>

@@ -13,7 +13,7 @@
             <span class="divider">|</span>
             <span>Luxury Living</span>
             <span class="divider">|</span>
-            <span>Call: +91 98765 43210</span>
+            <span>Call: +91 99711 99138</span>
         </div>
         <div class="top-bar-right">
             <a href="#">Help</a>

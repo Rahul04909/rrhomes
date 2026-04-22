@@ -275,8 +275,21 @@
 
                 <?php
                 $msg = '';
-                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_contact'])) {
-                    $msg = "<div style='color:#28a745; background:rgba(40,167,69,0.1); padding:15px; border-radius:5px; margin-bottom:25px; font-weight:bold; border-left:4px solid #28a745;'>Your message has been successfully sent! Our team will contact you soon.</div>";
+                if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_contact'])) {
+                    require_once 'database/config.php';
+                    $name = mysqli_real_escape_string($conn, $_POST['name']);
+                    $email = mysqli_real_escape_string($conn, $_POST['email']);
+                    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+                    $message = mysqli_real_escape_string($conn, $_POST['message']);
+                    $source = "Contact Us Page";
+                    
+                    $sql = "INSERT INTO enquiries (name, email, phone, message, source) VALUES ('$name', '$email', '$phone', '$message', '$source')";
+                    
+                    if(mysqli_query($conn, $sql)) {
+                        $msg = "<div style='color:#28a745; background:rgba(40,167,69,0.1); padding:15px; border-radius:5px; margin-bottom:25px; font-weight:bold; border-left:4px solid #28a745;'>Your message has been successfully sent! Our team will contact you soon.</div>";
+                    } else {
+                        $msg = "<div style='color:#dc3545; background:rgba(220,53,69,0.1); padding:15px; border-radius:5px; margin-bottom:25px; font-weight:bold; border-left:4px solid #dc3545;'>Error submitting message. Please try again.</div>";
+                    }
                 }
                 ?>
                 <?= $msg ?>

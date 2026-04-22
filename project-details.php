@@ -161,8 +161,20 @@ $seo_featured = htmlspecialchars($project['seo_featured_image']);
                 <?php
                 $enq_msg = '';
                 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_enquiry'])) {
-                    // Here is where the actual DB insert or Mail logic goes
-                    $enq_msg = "<div style='color:#28a745; background:rgba(40,167,69,0.1); padding:15px; border-radius:5px; margin-bottom:20px; font-weight:bold; border-left:4px solid #28a745;'>Thank you! Your enquiry has been completely received. Our team will contact you.</div>";
+                    require_once 'database/config.php';
+                    $name = mysqli_real_escape_string($conn, $_POST['name']);
+                    $email = mysqli_real_escape_string($conn, $_POST['email']);
+                    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+                    $message = mysqli_real_escape_string($conn, $_POST['message']);
+                    $source = "Project Inquiry: " . mysqli_real_escape_string($conn, $title);
+                    
+                    $sql = "INSERT INTO enquiries (name, email, phone, message, source) VALUES ('$name', '$email', '$phone', '$message', '$source')";
+                    
+                    if(mysqli_query($conn, $sql)) {
+                        $enq_msg = "<div style='color:#28a745; background:rgba(40,167,69,0.1); padding:15px; border-radius:5px; margin-bottom:20px; font-weight:bold; border-left:4px solid #28a745;'>Thank you! Your enquiry has been completely received. Our team will contact you.</div>";
+                    } else {
+                        $enq_msg = "<div style='color:#dc3545; background:rgba(220,53,69,0.1); padding:15px; border-radius:5px; margin-bottom:20px; font-weight:bold; border-left:4px solid #dc3545;'>Error submitting enquiry. Please try again.</div>";
+                    }
                 }
                 ?>
                 <?= $enq_msg ?>

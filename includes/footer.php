@@ -37,7 +37,7 @@
             <div class="footer-col contact-col">
                 <h4 class="col-title">Contact Us</h4>
                 <ul class="contact-list">
-                    <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 99711 99138</li>
                     <li><i class="fa-solid fa-envelope"></i> info@rrhomes.com</li>
                     <li><i class="fa-solid fa-location-dot"></i> RR Homes, Puri VIP Floors<br>Sector 81,
                         Faridabad<br>Haryana 121007</li>
@@ -62,15 +62,20 @@
 
     <!-- Bottom Strip -->
     <style>
-        .mineib-credit { font-size: 0.95rem; color: #aaa; }
-        .mineib-link { 
-            position: relative; 
-            color: #d4af37; 
-            text-decoration: none; 
-            font-weight: 700; 
+        .mineib-credit {
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+
+        .mineib-link {
+            position: relative;
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 700;
             transition: color 0.3s ease;
             display: inline-block;
         }
+
         .mineib-link::after {
             content: '';
             position: absolute;
@@ -84,29 +89,40 @@
             transform-origin: bottom right;
             transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
         }
-        .mineib-link:hover { color: #fff; text-shadow: 0 0 8px rgba(212,175,55,0.6); }
+
+        .mineib-link:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
         .mineib-link:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
             animation: gradientMove 2s linear infinite;
         }
+
         @keyframes gradientMove {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
         }
     </style>
     <div class="footer-bottom">
         <div class="footer-bottom-container">
             <p>&copy; <?php echo date('Y'); ?> RR Homes. All rights reserved.</p>
             <p class="mineib-credit">
-                Website Powered by 
+                Website Powered by
                 <a href="https://www.mineib.com" target="_blank" class="mineib-link">
                     Mineib Creative Technology
                 </a>
             </p>
         </div>
     </div>
-    
+
     <!-- Back to Top Floating Button -->
     <a href="#" class="back-to-top" id="backToTop" aria-label="Back to Top">
         <i class="fa-solid fa-arrow-up"></i>
