@@ -16,106 +16,67 @@ if (isset($_GET['delete'])) {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Enquiries - RR Homes Admin</title>
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        .table-responsive { overflow-x: auto; }
-        .message-cell { max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .source-badge { background: #d4af37; color: #fff; padding: 5px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
-    </style>
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<?php include '../header.php'; ?>
 
-    <?php include '../header.php'; ?>
+<!-- Custom Styles specific to Enquiries -->
+<style>
+    .table-responsive { overflow-x: auto; }
+    .message-cell { max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .source-badge { background: #d4af37; color: #fff; padding: 5px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
+</style>
 
-    <!-- Content Wrapper -->
-    <div class="content-wrapper">
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Manage Enquiries</h1>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <?php if (isset($_GET['msg']) && $_GET['msg'] == 'deleted'): ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        Enquiry deleted successfully!
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <?php endif; ?>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">All Form Submissions</h3>
-                    </div>
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Name</th>
-                                    <th>Contact Info</th>
-                                    <th>Message</th>
-                                    <th>Source</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $sql = "SELECT * FROM enquiries ORDER BY id DESC";
-                                $result = mysqli_query($conn, $sql);
-                                
-                                if (mysqli_num_rows($result) > 0) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<tr>";
-                                        echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . date('d M Y, h:i A', strtotime($row['created_at'])) . "</td>";
-                                        echo "<td><strong>" . htmlspecialchars($row['name']) . "</strong></td>";
-                                        echo "<td><i class='fas fa-envelope text-muted'></i> " . htmlspecialchars($row['email']) . "<br><i class='fas fa-phone text-muted'></i> " . htmlspecialchars($row['phone']) . "</td>";
-                                        echo "<td class='message-cell' title='" . htmlspecialchars($row['message']) . "'>" . htmlspecialchars($row['message']) . "</td>";
-                                        echo "<td><span class='source-badge'>" . htmlspecialchars($row['source']) . "</span></td>";
-                                        echo "<td>
-                                                <button class='btn btn-info btn-sm view-btn' data-name='".htmlspecialchars($row['name'])."' data-email='".htmlspecialchars($row['email'])."' data-phone='".htmlspecialchars($row['phone'])."' data-message='".htmlspecialchars($row['message'], ENT_QUOTES)."' data-source='".htmlspecialchars($row['source'])."' data-date='".date('d M Y, h:i A', strtotime($row['created_at']))."'><i class='fas fa-eye'></i> View</button>
-                                                <a href='#' onclick='confirmDelete(" . $row['id'] . ")' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></a>
-                                              </td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='7' class='text-center'>No enquiries found.</td></tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Main content -->
+<?php if (isset($_GET['msg']) && $_GET['msg'] == 'deleted'): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Enquiry deleted successfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+<?php endif; ?>
 
-    <?php include '../footer.php'; ?>
-
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Form Submissions</h3>
+    </div>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap table-bordered mb-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Contact Info</th>
+                    <th>Message</th>
+                    <th>Source</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql = "SELECT * FROM enquiries ORDER BY id DESC";
+                $result = mysqli_query($conn, $sql);
+                
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . $row['id'] . "</td>";
+                        echo "<td>" . date('d M Y, h:i A', strtotime($row['created_at'])) . "</td>";
+                        echo "<td><strong>" . htmlspecialchars($row['name']) . "</strong></td>";
+                        echo "<td><i class='fas fa-envelope text-muted'></i> " . htmlspecialchars($row['email']) . "<br><i class='fas fa-phone text-muted'></i> " . htmlspecialchars($row['phone']) . "</td>";
+                        echo "<td class='message-cell' title='" . htmlspecialchars($row['message']) . "'>" . htmlspecialchars($row['message']) . "</td>";
+                        echo "<td><span class='source-badge'>" . htmlspecialchars($row['source']) . "</span></td>";
+                        echo "<td>
+                                <button class='btn btn-info btn-sm view-btn' data-name='".htmlspecialchars($row['name'], ENT_QUOTES)."' data-email='".htmlspecialchars($row['email'], ENT_QUOTES)."' data-phone='".htmlspecialchars($row['phone'], ENT_QUOTES)."' data-message='".htmlspecialchars($row['message'], ENT_QUOTES)."' data-source='".htmlspecialchars($row['source'], ENT_QUOTES)."' data-date='".date('d M Y, h:i A', strtotime($row['created_at']))."'><i class='fas fa-eye'></i> View</button>
+                                <a href='#' onclick='confirmDelete(" . $row['id'] . ")' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></a>
+                              </td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7' class='text-center p-4'>No enquiries found.</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Modal for Viewing Enquiry -->
@@ -124,9 +85,7 @@ if (isset($_GET['delete'])) {
     <div class="modal-content">
       <div class="modal-header bg-dark text-white">
         <h5 class="modal-title">Enquiry Details</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p><strong>Date:</strong> <span id="m_date"></span></p>
@@ -137,22 +96,17 @@ if (isset($_GET['delete'])) {
         <p><strong>Phone:</strong> <span id="m_phone"></span></p>
         <hr>
         <p><strong>Message:</strong></p>
-        <div id="m_message" class="p-3 bg-light border rounded"></div>
+        <div id="m_message" class="p-3 bg-light border rounded" style="white-space: pre-wrap;"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <a href="" id="m_mailto" class="btn btn-primary"><i class="fas fa-reply"></i> Reply by Email</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+<?php include '../footer.php'; ?>
 
 <script>
     function confirmDelete(id) {
@@ -180,9 +134,9 @@ if (isset($_GET['delete'])) {
             $('#m_source').text($(this).data('source'));
             $('#m_date').text($(this).data('date'));
             $('#m_mailto').attr('href', 'mailto:' + $(this).data('email') + '?subject=Reply to your inquiry regarding ' + $(this).data('source'));
-            $('#viewModal').modal('show');
+            
+            var viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
+            viewModal.show();
         });
     });
 </script>
-</body>
-</html>

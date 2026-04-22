@@ -41,6 +41,13 @@ $menuItems = [
         "pages" => [
             ["title" => "Profile", "url" => $base_url . "profile.php"]
         ],
+    ],
+    [
+        "menuTitle" => "Enquiries",
+        "icon" => "fas fa-envelope",
+        "pages" => [
+            ["title" => "Manage Enquiries", "url" => $base_url . "enquiries/index.php"]
+        ],
     ]
 ];
 
@@ -49,7 +56,9 @@ foreach ($menuItems as $menuItem) {
     foreach ($menuItem['pages'] as $page) {
         $cleanPageUrl = preg_replace('#^(\.\./|\./)#', '', $page['url']);
         $script_path = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
-        if (substr($script_path, -strlen($cleanPageUrl)) === $cleanPageUrl) {
+        
+        // Ensure we match the exact directory and file to prevent "index.php" from falsely triggering
+        if (strpos($script_path, '/' . $cleanPageUrl) !== false) {
             $active_pageInfo = [
                 "breadcrumb_Items" => [
                     ["title" => $menuItem['menuTitle'], "url" => "#"],
@@ -493,12 +502,6 @@ $active_page = $active_pageInfo['active_page'] ?? null;
                                 <?php endif; ?>
                             </li>
                         <?php endforeach; ?>
-                        <li class="nav-item">
-                            <a href="<?= $base_url ?>enquiries/index.php" class="nav-link <?= strpos($_SERVER['PHP_SELF'], 'enquiries') !== false ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-envelope"></i>
-                                <p>Enquiries</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="<?= $base_url ?>logout.php" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
