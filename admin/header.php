@@ -13,7 +13,8 @@ $admin_data = $stmt->get_result()->fetch_assoc();
 $logged_in_name = $admin_data['name'] ?? 'Admin';
 $logged_in_image = $admin_data['profile_image'] ?? 'user-avtar.png';
 
-$in_subfolder = (basename(dirname($_SERVER['PHP_SELF'])) === 'projects');
+$current_dir_name = basename(dirname($_SERVER['PHP_SELF']));
+$in_subfolder = ($current_dir_name !== 'admin');
 $base_url = $in_subfolder ? '../' : './';
 $asset_url = $in_subfolder ? '../../assets/' : '../assets/';
 
