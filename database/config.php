@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$username = 'jhdindus_rrhomes';
+$username = 'sbsmarti_rrhomes';
 $password = 'Rd14072003@./';
-$database = 'jhdindus_rrhomes';
+$database = 'sbsmarti_rrhomes';
 
 $conn = new mysqli($host, $username, $password, $database);
 
