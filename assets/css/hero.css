@@ -25,7 +25,7 @@
 .heroSwiper {
     width: 100%;
     /* Use aspect ratio to allow natural dimensional scaling instead of strict cutoffs */
-    aspect-ratio: 21 / 9;
+    aspect-ratio: 16 / 8;
     height: auto;
     max-height: 85vh; /* Safe limit for extremely wide screens */
 }
@@ -125,7 +125,7 @@
 
     .heroSwiper {
         /* This perfectly scales the image height to match its width gracefully */
-        aspect-ratio: 4 / 3; 
+        aspect-ratio: 1 / 1; 
         height: auto;
         min-height: auto; /* REMOVED rigid clipping! */
     }
