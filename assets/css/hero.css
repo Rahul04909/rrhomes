@@ -23,28 +23,22 @@
 /* Swiper Base Dimensions - Autofit scaling */
 .heroSwiper {
     width: 100%;
-    /* Use aspect ratio to allow natural dimensional scaling instead of strict cutoffs */
-    aspect-ratio: 16 / 8;
     height: auto;
-    max-height: 85vh; /* Safe limit for extremely wide screens */
 }
 
 .swiper-slide {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-/* Background Image perfectly fitted */
+/* Background Image perfectly fitted (Flipkart Style) */
 .swiper-slide img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    object-position: center;
+    height: auto;
+    display: block;
     z-index: 1;
 }
 
@@ -104,9 +98,7 @@
 
 /* Tablets / Small Desktops */
 @media screen and (max-width: 1200px) {
-    .heroSwiper {
-        aspect-ratio: 16 / 9; /* Squarer layout for tablets */
-    }
+    /* Auto fit handles height naturally */
 }
 
 @media screen and (max-width: 1050px) {
@@ -132,10 +124,8 @@
     }
 
     .heroSwiper {
-        /* This perfectly scales the image height to match its width gracefully */
-        aspect-ratio: 1 / 1; 
         height: auto;
-        min-height: auto; /* REMOVED rigid clipping! */
+        min-height: auto;
     }
 
     /* Modern phones still show dots, but keep arrows hidden for swiping */

@@ -20,10 +20,21 @@
 }
 
 /* Base Reset */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 .top-bar *,
 .header *,
 .mobile-nav * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -502,6 +513,7 @@
    MOBILE & TABLET NAVIGATION
    ========================================================================== */
 html, body {
+    /* Prevent horizontal scrolling on mobile */
     overflow-x: hidden;
     width: 100%;
 }
