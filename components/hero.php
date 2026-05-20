@@ -11,18 +11,18 @@
 
         <!-- Slide 1 -->
         <div class="swiper-slide">
-          <img src="assets/hero/rrhomes-1.jpeg" alt="RR Homes Banner">
+          <img src="assets/hero/hero-banner-1.png" alt="RR Homes Banner">
         </div>
 
         <!-- Slide 2 -->
         <div class="swiper-slide">
-          <img src="assets/hero/rrhomes-2.jpeg" alt="RR Homes Banner">
+          <img src="assets/hero/hero-banner-2.png" alt="RR Homes Banner">
         </div>
 
         <!-- Slide 3 -->
-        <div class="swiper-slide">
+        <!-- <div class="swiper-slide">
           <img src="assets/hero/rrhomes-3.jpeg" alt="RR Homes Banner">
-        </div>
+        </div> -->
 
       </div>
 
